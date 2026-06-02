@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int totalFruit(vector<int>& fruits) {
+        int n=fruits.size();
+        map<int,int> m;
+        int sum=0;
+        int mx=0;
+        int l=0,r=0;
+        while(r<n){
+            m[fruits[r]]++;
+            if(m.size()<3){
+                r++;
+            }
+            else{
+                while(m.size()>2){
+                    m[fruits[l]]--;
+                    if(m[fruits[l]]==0){
+                        m.erase(fruits[l]);
+                    }
+                    l++;
+                }
+                r++;
+            }
+            mx=max(mx,r-l);
+        }
+        return mx;
+        
+    }
+};
