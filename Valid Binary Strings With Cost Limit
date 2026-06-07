@@ -1,0 +1,45 @@
+class Solution {
+    vector<string>ans;
+    void f(string s,int n,int cost,int k){
+        if(cost>k) return;
+        if(s.size()==n){
+            ans.push_back(s);
+            return;
+        }
+        if(s.size()==0){
+             s.push_back('0');
+            f(s,n,cost,k);
+            s.pop_back();
+            s.push_back('1');
+            f(s,n,cost+s.size()-1,k);
+            s.pop_back();
+        }
+        else{
+             if(s.back()=='0'){
+                s.push_back('0');
+                f(s,n,cost,k);
+                s.pop_back();
+                s.push_back('1');
+                f(s,n,cost+s.size()-1,k);
+                s.pop_back();
+            }
+            else{
+                s.push_back('0');
+                f(s,n,cost,k);
+                s.pop_back();
+            }
+        }
+       
+       
+            
+        
+    }
+public:
+    vector<string> generateValidStrings(int n, int k) {
+        string s="";
+        f(s,n,0,k);
+        return ans;
+        
+        
+    }
+};
