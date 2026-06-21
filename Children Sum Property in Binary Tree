@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool checkChildrenSum(TreeNode* root) {
+        return dfs(root);
+    }
+
+    bool dfs(TreeNode* root) {
+        if(root == NULL) return true;
+
+        if(root->left == NULL && root->right == NULL)
+            return true;
+
+        int left = 0, right = 0;
+
+        if(root->left)
+            left = root->left->val;
+
+        if(root->right)
+            right = root->right->val;
+
+        if(root->val != left + right)
+            return false;
+
+        return dfs(root->left) && dfs(root->right);
+    }
+};
