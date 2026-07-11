@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string findCommonResponse(vector<vector<string>>& responses) {
+        map<int,set<string>>m;
+        int n=responses.size();
+        for(int i=0; i<n; ++i){
+            for(auto it:responses[i]){
+                m[i].insert(it);
+            }
+        }
+        map<string,int>m1;
+        for(auto it:m){
+            for(auto str:it.second){
+                m1[str]++;
+            }
+        }
+
+        string s;
+        int val=0;
+        for(auto it:m1){
+            if(it.second>val){
+                val=it.second;
+                s=it.first;
+            }
+        }
+        return s;
+
+        
+    }
+};
