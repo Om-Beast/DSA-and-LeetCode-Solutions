@@ -1,0 +1,23 @@
+class Solution {
+public:
+    long long lcm(long long a, long long b) {
+        return a / gcd(a, b) * b;
+    }
+    int subarrayLCM(vector<int>& nums, int k) {
+        int ans = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            long long x = 1;
+
+            for (int j = i; j < nums.size(); j++) {
+                x = lcm(x, nums[j]);
+
+                if (x == k) ans++;
+
+                if (x > k || k % x != 0)
+                    break;
+            }
+        }
+
+        return ans;
+    }
+};
